@@ -44,7 +44,7 @@
 
 <div class="container" style="margin: 40px">
 
-    <h2>Books</h2>
+    <h3>Books</h3>
     <table class="table">
         <tr>
             <th>Isbn</th>
@@ -68,7 +68,7 @@
         <% } %>
     </table>
 
-    <h2>Your Books</h2>
+    <h3>Your Books</h3>
     <table class="table">
         <tr>
             <th>Name</th>

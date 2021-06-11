@@ -29,7 +29,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body style="text-align: center;">
 <%--<h1>Hii Admin, your id is <%= userId %></h1>--%>
 <%
     String error = (String) request.getAttribute("error");
@@ -43,7 +43,7 @@
 </form>
 
 <div class="container" style="margin: 40px">
-    <h2>Books</h2>
+    <h3>Books</h3>
     <% if (books != null) { %>
     <table class="table">
         <tr>
@@ -71,7 +71,7 @@
         <% } %>
     </table>
     <% } %>
-    <h2>Books Usage</h2>
+    <h3>Books Usage</h3>
     <% if (currentBooks != null) { %>
     <table class="table">
         <tr>
@@ -95,7 +95,7 @@
     </table>
     <% } %>
 
-    <h2>Book Categories</h2>
+    <h3>Book Categories</h3>
     <% if (categories != null) { %>
     <table class="table">
         <tr>
@@ -116,16 +116,30 @@
     </table>
     <% } %>
     <br/>
-    <br/>
-    <h2>Add Books</h2>
-    <form action="admin-home" method="post">
-        <input type="text" class="form-control" name="book_isbn" placeholder="Book isbn"><br/>
-        <input type="text" class="form-control" name="book_name" placeholder="Book name"><br/>
-        <input type="text" class="form-control" name="book_author" placeholder="Book author"><br/>
-        <input type="text" class="form-control" name="book_category" placeholder="Book category"><br/>
-        <input type="text" class="form-control" name="book_quantity" placeholder="Book quantity"><br/>
-        <input type="submit">
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" style="margin: 20px">
+                <h3>Add Books</h3>
+                <form action="admin-home" method="post">
+                    <input type="text" class="form-control" name="book_isbn" placeholder="Book isbn"><br/>
+                    <input type="text" class="form-control" name="book_name" placeholder="Book name"><br/>
+                    <input type="text" class="form-control" name="book_author" placeholder="Book author"><br/>
+                    <input type="text" class="form-control" name="book_category" placeholder="Book category"><br/>
+                    <input type="text" class="form-control" name="book_quantity" placeholder="Book quantity"><br/>
+                    <input type="submit" class="btn btn-primary">
+                </form>
+            </div>
+            <div class="col-md-6" style="margin: 20px">
+                <h3>Add Category</h3>
+                <form action="admin-home" method="post">
+                    <input type="text" class="form-control" name="category_name" placeholder="category name"><br/>
+                    <input type="text" class="form-control" name="floor_no" placeholder="Floor no"><br/>
+                    <input type="text" class="form-control" name="shelf_no" placeholder="Shelf no"><br/>
+                    <input type="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -10,14 +10,13 @@
 <%
     String error = (String) request.getAttribute("error");
 
-    if(error != null)
-    {
+    if (error != null) {
         out.println(error);
     }
 %>
 
-<div class="container">
-    <h1>Register Form:</h1>
+<div class="container" style="margin-top: 30px">
+    <h2>Registration Form:</h2>
     <div class="card">
         <div class="card-body">
             <form action="signup-servlet" method="post">
@@ -66,7 +65,9 @@
                 <div class=" form-group row">
                     <label class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                        <input type="password" class="form-control" name="password" placeholder="Enter Password"
+                               required>
+                        <p style="color: grey;font-size: 13px;">Password should contain more than 6 characters</p>
                     </div>
                 </div>
 

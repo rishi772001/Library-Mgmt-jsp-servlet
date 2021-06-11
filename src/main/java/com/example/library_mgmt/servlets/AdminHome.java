@@ -1,6 +1,8 @@
 package com.example.library_mgmt.servlets;
 
 import com.example.library_mgmt.config.Connect;
+import com.example.library_mgmt.models.Book;
+import com.example.library_mgmt.models.Category;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,13 +46,13 @@ public class AdminHome extends HttpServlet {
         return false;
     }
 
-    public void addBooks(String isbn, String name, String author, String category, String quantity) throws SQLException, NumberFormatException {
-        int book_isbn = Integer.parseInt(isbn);
+    public void addBooks(Book book) throws SQLException, NumberFormatException {
+        int book_isbn = book.getBookIsbn();
         if(!isExistingBook(book_isbn)){
-            String addNewBook = "Insert into books values('"+book_isbn+"','"+name+"','"+author+"','"+quantity+"','"+category+"', '"+quantity+"')";
+            String addNewBook = "Insert into books values('"+book_isbn+"','"+book.getBookName()+"','"+book.getBookAuthor()+"','"+book.getBookQuantity()+"','"+book.getBookCategory()+"', '"+book.getBookQuantity()+"')";
             Connect.execute(addNewBook);
         } else {
-            String updateBook = "update books set current_quantity = current_quantity + '"+quantity+"', book_quantity = book_quantity + '"+quantity+"' where book_isbn = '"+book_isbn+"'";
+            String updateBook = "update books set current_quantity = current_quantity + '"+book.getBookQuantity()+"', book_quantity = book_quantity + '"+book.getBookQuantity()+"' where book_isbn = '"+book_isbn+"'";
             Connect.execute(updateBook);
         }
     }
@@ -73,6 +75,11 @@ public class AdminHome extends HttpServlet {
         }
     }
 
+    public void addCategory(Category category) throws SQLException {
+        String addCategory = "insert into category values('"+category.getCategory_name()+"', '"+category.getShelfNo()+"', '"+category.getFloorNo()+"')";
+        Connect.execute(addCategory);
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String isbn = request.getParameter("isbn");
         if(isbn != null){
@@ -87,7 +94,8 @@ public class AdminHome extends HttpServlet {
             request.setAttribute("books", Connect.read_books());
             ResultSet currentBooks = readCurrentBooks();
             ResultSet categories = readCategories();
-            request.setAttribute("categories", request.getAttribute("error"));
+            if(request.getAttribute("error") != null)
+                request.setAttribute("error", "Something went wrong, please try again!!");
             request.setAttribute("categories", categories);
             request.setAttribute("currentBooks", currentBooks);
             request.getRequestDispatcher("admin_home.jsp").forward(request, response);
@@ -95,17 +103,39 @@ public class AdminHome extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String isbn = request.getParameter("book_isbn");
         String name = request.getParameter("book_name");
         String author = request.getParameter("book_author");
         String category = request.getParameter("book_category");
-        String quantity = request.getParameter("book_quantity");
+        int isbn = -1;
+        int quantity = -1;
         try {
-            addBooks(isbn, name, author, category, quantity);
-            response.sendRedirect("admin-home");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            isbn = Integer.parseInt(request.getParameter("book_isbn"));
+            quantity = Integer.parseInt(request.getParameter("book_quantity"));
+        } catch (NumberFormatException e){
+            e.printStackTrace();
             response.sendRedirect("admin-home?error=true");
+        }
+        String categoryName = request.getParameter("category_name");
+        if(categoryName != null){
+            String floorNo = request.getParameter("floor_no");
+            String shelfNo = request.getParameter("shelf_no");
+            Category categoryObj = new Category(categoryName, shelfNo, floorNo);
+            try {
+                addCategory(categoryObj);
+            } catch (SQLException throwables) {
+                response.sendRedirect("admin-home?error=true");
+                throwables.printStackTrace();
+            }
+        }
+        else {
+            try {
+                Book book = new Book(isbn, name, author, quantity, category, quantity);
+                addBooks(book);
+                response.sendRedirect("admin-home");
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                response.sendRedirect("admin-home?error=true");
+            }
         }
 
     }

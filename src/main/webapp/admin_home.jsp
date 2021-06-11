@@ -115,17 +115,31 @@
         <% } %>
     </table>
     <% } %>
-    <br/>
-    <br/>
-    <h3>Add Books</h3>
-    <form action="admin-home" method="post">
-        <input type="text" class="form-control" name="book_isbn" placeholder="Book isbn"><br/>
-        <input type="text" class="form-control" name="book_name" placeholder="Book name"><br/>
-        <input type="text" class="form-control" name="book_author" placeholder="Book author"><br/>
-        <input type="text" class="form-control" name="book_category" placeholder="Book category"><br/>
-        <input type="text" class="form-control" name="book_quantity" placeholder="Book quantity"><br/>
-        <input type="submit" class="btn btn-primary">
-    </form>
+    <br/><br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Add Books</h3>
+                <form action="admin-home" method="post">
+                    <input type="text" class="form-control" name="book_isbn" placeholder="Book isbn"><br/>
+                    <input type="text" class="form-control" name="book_name" placeholder="Book name"><br/>
+                    <input type="text" class="form-control" name="book_author" placeholder="Book author"><br/>
+                    <input type="text" class="form-control" name="book_category" placeholder="Book category"><br/>
+                    <input type="text" class="form-control" name="book_quantity" placeholder="Book quantity"><br/>
+                    <input type="submit" class="btn btn-primary">
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h3>Add Category</h3>
+                <form action="admin-home" method="post">
+                    <input type="text" class="form-control" name="category_name" placeholder="category name"><br/>
+                    <input type="text" class="form-control" name="floor_no" placeholder="Floor no"><br/>
+                    <input type="text" class="form-control" name="shelf_no" placeholder="Shelf no"><br/>
+                    <input type="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
