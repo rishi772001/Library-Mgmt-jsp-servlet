@@ -1,0 +1,14 @@
+.btn{
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+.danger{
+    color: white;
+    background-color: red;
+}
+.logout-btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
