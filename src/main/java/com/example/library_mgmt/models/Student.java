@@ -1,8 +1,9 @@
 package com.example.library_mgmt.models;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "student")
 public class Student {
     private int rollno;
     private String name;
@@ -26,6 +27,7 @@ public class Student {
         this.password = password;
     }
 
+    @XmlAttribute
     public int getRollno() {
         return rollno;
     }
