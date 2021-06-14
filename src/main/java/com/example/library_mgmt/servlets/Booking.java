@@ -26,12 +26,15 @@ public class Booking extends HttpServlet {
         String today = LocalDate.now().toString();
         String due_date = LocalDate.now().plusDays(DUE_DAYS).toString();
 
-        String addToBorrow = "insert into borrower (stud_rollno, book_isbn, borrow_date, due_date, is_returned) values ('" + student_id + "','" + book_id + "','" + today + "','" + due_date + "', 'false')";
-        String update_availability = "update books set current_quantity = current_quantity - 1 where book_isbn = '" + book_id + "' ";
+        if(Connect.executeSelect("select * from books where book_isbn = '"+book_id+"' and current_quantity > 0").next()) {
+
+            String addToBorrow = "insert into borrower (stud_rollno, book_isbn, borrow_date, due_date, is_returned) values ('" + student_id + "','" + book_id + "','" + today + "','" + due_date + "', 'false')";
+            String update_availability = "update books set current_quantity = current_quantity - 1 where book_isbn = '" + book_id + "' ";
 
 
-        Connect.executeTransaction(new String[]{addToBorrow, update_availability});
-        request.getRequestDispatcher("student-home").forward(request, response);
+            Connect.executeTransaction(new String[]{addToBorrow, update_availability});
+            request.getRequestDispatcher("student-home").forward(request, response);
+        }
 
     }
 

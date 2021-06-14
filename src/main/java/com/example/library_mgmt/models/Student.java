@@ -1,5 +1,8 @@
 package com.example.library_mgmt.models;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Student {
     private int rollno;
     private String name;

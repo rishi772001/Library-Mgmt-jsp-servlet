@@ -15,11 +15,11 @@
 <body>
 <%
     String error = (String) request.getAttribute("error");
-    if(error != null)
-    {
+    if (error != null) {
         out.println(error);
     }
 %>
+<div class="container" style="margin-top: 30px">
     <h2>Login</h2>
     <div class="card">
         <div class="card-body">
@@ -44,7 +44,7 @@
                     <label class="col-sm-2 col-form-label">E - mail(Only for admin)</label>
                     <div class="col-sm-7">
                         <input type="email" class="form-control" name="email"
-                               placeholder="Enter Email" >
+                               placeholder="Enter Email">
                     </div>
                 </div>
 
@@ -59,7 +59,8 @@
                 <div class=" form-group row">
                     <label class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                        <input type="password" class="form-control" name="password" placeholder="Enter Password"
+                               required>
                     </div>
                 </div>
 
@@ -68,5 +69,6 @@
             </form>
         </div>
     </div>
+</div>
 </body>
 </html>

@@ -26,7 +26,6 @@ public class SignupServlet extends HttpServlet {
                 System.out.println("user already exists");
                 return false;
             }
-
     }
 
     public static boolean signup_student(Student student) throws SQLException {

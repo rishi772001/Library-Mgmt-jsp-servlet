@@ -115,10 +115,10 @@
         <% } %>
     </table>
     <% } %>
-    <br/>
+    <br/><br />
     <div class="container">
         <div class="row">
-            <div class="col-md-6" style="margin: 20px">
+            <div class="col-md-6">
                 <h3>Add Books</h3>
                 <form action="admin-home" method="post">
                     <input type="text" class="form-control" name="book_isbn" placeholder="Book isbn"><br/>
@@ -129,7 +129,7 @@
                     <input type="submit" class="btn btn-primary">
                 </form>
             </div>
-            <div class="col-md-6" style="margin: 20px">
+            <div class="col-md-6">
                 <h3>Add Category</h3>
                 <form action="admin-home" method="post">
                     <input type="text" class="form-control" name="category_name" placeholder="category name"><br/>

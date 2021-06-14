@@ -115,6 +115,8 @@ public class AdminHome extends HttpServlet {
             e.printStackTrace();
             response.sendRedirect("admin-home?error=true");
         }
+
+        // add category
         String categoryName = request.getParameter("category_name");
         if(categoryName != null){
             String floorNo = request.getParameter("floor_no");
@@ -127,6 +129,7 @@ public class AdminHome extends HttpServlet {
                 throwables.printStackTrace();
             }
         }
+        // add book
         else {
             try {
                 Book book = new Book(isbn, name, author, quantity, category, quantity);
