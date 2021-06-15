@@ -2,6 +2,7 @@ package com.example.library_mgmt.api.resource;
 
 import com.example.library_mgmt.config.Connect;
 import com.example.library_mgmt.models.Student;
+import com.example.library_mgmt.servlets.SignupServlet;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,4 +35,31 @@ public class StudentResource {
         }
         return student;
     }
+
+    public boolean addStudent(Student student) throws SQLException {
+        return SignupServlet.signup_student(student);
+    }
+
+    public boolean updateStudent(int id, Student student){
+        String updateStudent = "update student set stud_rollno = '"+student.getRollno()+"', stud_name = '"+student.getName()+"', stud_password = '"+student.getPassword()+"' where stud_rollno = '"+id+"'";
+        try {
+            Connect.execute(updateStudent);
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteStudent(int id){
+        String updateStudent = "delete from student where stud_rollno = '"+id+"'";
+        try {
+            Connect.execute(updateStudent);
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
 }

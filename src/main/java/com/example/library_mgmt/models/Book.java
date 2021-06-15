@@ -8,6 +8,8 @@ public class Book {
     private String bookCategory;
     private int currentQuantity;
 
+    public Book(){}
+
     public Book(int book_isbn, String book_name, String book_author, int book_quantity, String book_category, int current_quantity) {
         this.bookIsbn = book_isbn;
         this.bookName = book_name;
