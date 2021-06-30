@@ -1,6 +1,7 @@
 package com.example.library_mgmt.servlets;
 
 import com.example.library_mgmt.config.Connect;
+import com.example.library_mgmt.config.Security;
 import com.example.library_mgmt.models.Admin;
 import com.example.library_mgmt.models.Student;
 
@@ -51,6 +52,8 @@ public class Login extends HttpServlet {
         if (user.equals("admin")) {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
+            password = Security.encrypt(password);
+
             // create admin
             Admin admin = new Admin(email, password);
 
@@ -74,6 +77,7 @@ public class Login extends HttpServlet {
 
             String password = request.getParameter("password");
 
+            password = Security.encrypt(password);
             Student student = new Student(rollno, password);
 
             if (login_student(student)) {

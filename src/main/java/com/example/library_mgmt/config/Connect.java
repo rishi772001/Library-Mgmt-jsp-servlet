@@ -68,7 +68,7 @@ public class Connect {
     }
 
     public static ResultSet read_books(){
-        String getBooks = "select * from books";
+        String getBooks = "call get_books()";
         ResultSet rs = null;
         try {
             rs = Connect.executeSelect(getBooks);

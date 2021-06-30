@@ -1,6 +1,7 @@
 package com.example.library_mgmt.servlets;
 
 import com.example.library_mgmt.config.Connect;
+import com.example.library_mgmt.config.Security;
 import com.example.library_mgmt.models.Admin;
 import com.example.library_mgmt.models.Student;
 
@@ -53,6 +54,8 @@ public class SignupServlet extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         else {
+            // encrypt password
+            password = Security.encrypt(password);
             if (user.equals("admin")) {
                 email = request.getParameter("email");
 
